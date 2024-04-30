@@ -10,11 +10,11 @@ class EditNoteViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Padding(
-      padding: EdgeInsets.all(16),
+     padding: EdgeInsets.only(top: 16, left: 24, right: 24),
       child: Column(children: [
         SafeArea(
             child: CustomAppBAr(
-          text: 'Edit Notes',
+          text: 'Edit Note',
           icon: Icons.check,
         )),
         SizedBox(
