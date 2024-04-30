@@ -13,7 +13,7 @@ class NotesViewBady extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 24),
       child: Column(
         children: [
-          SafeArea(child: CustomAppBAr()),
+          SafeArea(child: CustomAppBAr(text: 'Notes',icon: Icons.search,)),
           Expanded(child: NotesListView()),
         ],
       ),
