@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:note_app_tr2/cubits/add_note_cubit/add_note_cubit.dart';
+import 'package:note_app_tr2/cubits/notes_cubit/notes_cubit.dart';
 import 'package:note_app_tr2/widgets/add_note_form.dart';
 
 class AddNoteButtomSheet extends StatelessWidget {
@@ -31,13 +32,14 @@ class AddNoteButtomSheet extends StatelessWidget {
                     ));
           }
           if (state is AddNoteSuccess) {
+            BlocProvider.of<NotesCubit>(context).fetchAllNotes();
             Navigator.pop(context);
           }
         },
         builder: (context, state) {
           return AbsorbPointer(
               absorbing: state is AddNoteLoading ? true : false,
-              child:  Padding(
+              child: Padding(
                 padding: EdgeInsets.only(
                     right: 24,
                     left: 24,
