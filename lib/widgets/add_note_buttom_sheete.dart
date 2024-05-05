@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:note_app_tr2/constants.dart';
 import 'package:note_app_tr2/cubits/cubit/add_note_cubit.dart';
 import 'package:note_app_tr2/widgets/add_note_form.dart';
 
@@ -20,8 +18,7 @@ class AddNoteButtomSheet extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (context) => Row(
-                    
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Text(state.error),
                           TextButton(
@@ -30,7 +27,6 @@ class AddNoteButtomSheet extends StatelessWidget {
                               },
                               child: const Text(
                                 'Close',
-                                
                               ))
                         ],
                       ));
@@ -40,12 +36,8 @@ class AddNoteButtomSheet extends StatelessWidget {
             }
           },
           builder: (context, state) {
-            return ModalProgressHUD(
-                dismissible: false,
-                progressIndicator: const CircularProgressIndicator(
-                  color: kprimaryColor,
-                ),
-                inAsyncCall: state is AddNoteLoading ? true : false,
+            return AbsorbPointer(
+                absorbing: state is AddNoteLoading ? true : false,
                 child: const SingleChildScrollView(child: AddNoteForm()));
           },
         ),
