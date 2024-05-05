@@ -19,7 +19,7 @@ class NotesListView extends StatelessWidget {
           itemBuilder: (context, index) => Padding(
             padding: EdgeInsets.only(
                 bottom: MediaQuery.of(context).size.height * 0.015),
-            child: const NoteItem(),
+            child:  NoteItem(note: notes[index],),
           ),
         ),
       );
