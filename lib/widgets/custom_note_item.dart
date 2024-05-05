@@ -34,11 +34,15 @@ class NoteItem extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                trailing: Icon(
-                  Icons.delete,
-                  color: Colors.black.withOpacity(0.6),
-                  size: 32,
-                ),
+                trailing: IconButton(
+                    onPressed: () {
+                      note.delete();
+                    },
+                    icon: Icon(
+                      Icons.delete,
+                      color: Colors.black.withOpacity(0.6),
+                      size: 32,
+                    )),
                 subtitle: Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 12),
                   child: Text(
