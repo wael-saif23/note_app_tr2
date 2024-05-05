@@ -10,42 +10,45 @@ class AddNoteButtomSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
-      child: BlocConsumer<AddNoteCubit, AddNoteState>(
-        listener: (context, state) {
-          if (state is AddNoteFailure) {
-            showDialog(
-                context: context,
-                builder: (context) => Row(
-                  
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Text(state.error),
-                        TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                            },
-                            child: const Text(
-                              'Close',
-                              
-                            ))
-                      ],
-                    ));
-          }
-          if (state is AddNoteSuccess) {
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return ModalProgressHUD(
-              dismissible: false,
-              progressIndicator: const CircularProgressIndicator(
-                color: kprimaryColor,
-              ),
-              inAsyncCall: state is AddNoteLoading ? true : false,
-              child: const SingleChildScrollView(child: AddNoteForm()));
-        },
+    return BlocProvider(
+      create: (context) => AddNoteCubit(),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+        child: BlocConsumer<AddNoteCubit, AddNoteState>(
+          listener: (context, state) {
+            if (state is AddNoteFailure) {
+              showDialog(
+                  context: context,
+                  builder: (context) => Row(
+                    
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(state.error),
+                          TextButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              child: const Text(
+                                'Close',
+                                
+                              ))
+                        ],
+                      ));
+            }
+            if (state is AddNoteSuccess) {
+              Navigator.pop(context);
+            }
+          },
+          builder: (context, state) {
+            return ModalProgressHUD(
+                dismissible: false,
+                progressIndicator: const CircularProgressIndicator(
+                  color: kprimaryColor,
+                ),
+                inAsyncCall: state is AddNoteLoading ? true : false,
+                child: const SingleChildScrollView(child: AddNoteForm()));
+          },
+        ),
       ),
     );
   }
