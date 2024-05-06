@@ -68,4 +68,3 @@ class _EditNoteViewBodyState extends State<EditNoteViewBody> {
     );
   }
 }
-
